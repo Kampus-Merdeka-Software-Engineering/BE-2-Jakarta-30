@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
-const db = require("./app/models");
+const db = require("./models");
 // db.sequelize.sync({ force: false }).then(() => {
 //     console.log('Drop and Resync Db');
 // });
@@ -27,7 +27,7 @@ app.get("/recapi", async (req, res) => {
 
     try {
         // Assume the server has an endpoint /data that you want to fetch
-        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=random&sortBy=relevancy&pageSize=15&apiKey=d3d925f2f29d43149491530eab2d51b4', {
+        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=random&sortBy=relevancy&pageSize=10&apiKey=427339e8c6ed40aca20ea2daf2c8e10d', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ app.get("/nature", async (req, res) => {
 
     try {
         // Assume the server has an endpoint /data that you want to fetch
-        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=scenery&sortBy=relevancy&pageSize=15&apiKey=d3d925f2f29d43149491530eab2d51b4', {
+        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=tesla&from=2023-11-11&sortBy=publishedAt&pageSize=10&apiKey=427339e8c6ed40aca20ea2daf2c8e10d', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ app.get("/photo", async (req, res) => {
 
     try {
         // Assume the server has an endpoint /data that you want to fetch
-        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=photography&sortBy=relevancy&pageSize=15&apiKey=d3d925f2f29d43149491530eab2d51b4', {
+        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=photography&sortBy=relevancy&pageSize=10&apiKey=7dc348e26d1d4126bf15285202bc4fcc', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ app.get("/tech", async (req, res) => {
 
     try {
         // Assume the server has an endpoint /data that you want to fetch
-        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=technology&sortBy=relevancy&pageSize=15&apiKey=d3d925f2f29d43149491530eab2d51b4', {
+        const externalApiResponse = await fetch('https://newsapi.org/v2/everything?q=technology&sortBy=relevancy&pageSize=10&apiKey=7dc348e26d1d4126bf15285202bc4fcc', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -126,8 +126,8 @@ app.get("/tech", async (req, res) => {
       }
 });
 
-require('./app/routes/auth.routes')(app);
-require('./app/routes/post.routes')(app);
+require('./routes/auth.routes')(app);
+require('./routes/post.routes')(app);
 
 app.listen(8000, () => {
     console.log("Server is running on port 8000.");
